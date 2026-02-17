@@ -1,0 +1,41 @@
+<div class="mx-auto max-w-2xl p-6">
+  <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    @if(config.title || config.description) {
+    <div class="mb-6">
+      @if (config.title) {
+      <h2 class="text-xl font-semibold text-slate-900">{{ config.title }}</h2>
+      }
+      @if (config.description) {
+      <p class="mt-1 text-sm text-slate-600">{{ config.description }}</p>
+      }
+    </div>
+    }
+
+    @if (form) {
+    <form (ngSubmit)="onSubmit()" class="space-y-5">
+      @for(field of config.fields; track field.key) {
+      <app-dynamic-field [field]="field" [form]="form"></app-dynamic-field>
+      }
+
+      <div class="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-end">
+        <button type="button"
+          class="rounded-xl border border-slate-200 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+          (click)="onReset()">
+          {{ config.buttons?.resetText || 'Reset' }}
+        </button>
+
+        <button type="button"
+          class="rounded-xl border border-slate-200 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+          (click)="onCancel()">
+          {{ config.buttons?.cancelText || 'Cancel' }}
+        </button>
+
+        <button type="button" (click)="onSubmit()"
+          class="rounded-xl bg-sky-600 px-4 py-2 text-sm font-medium text-white hover:bg-sky-700">
+          {{ config.buttons?.submitText || 'Submit' }}
+        </button>
+      </div>
+    </form>
+    }
+  </div>
+</div>
