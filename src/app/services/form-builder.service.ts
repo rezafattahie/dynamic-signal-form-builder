@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DynamicFormConfig, FieldDefinition } from '../form.types';
+import { DynamicFormConfig } from '../models/form-config.model';
 import { SignalControl, SignalFormGroup } from './signal-controls';
+import { FieldDefinition } from '../models/Field-definition.model';
 
 @Injectable({ providedIn: 'root' })
 export class FormBuilderService {

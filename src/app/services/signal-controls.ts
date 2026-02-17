@@ -1,6 +1,7 @@
 import { computed, signal, Signal } from '@angular/core';
-import { FieldValidators } from '../form.types';
+
 import { ValidationErrors, validateEmail, validateMinLength, validateRequired } from './validators';
+import { FieldValidators } from '../models/Field-validators.type';
 
 export class SignalControl<T = unknown> {
   private readonly _value = signal<T>(undefined as T);

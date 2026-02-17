@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, computed } from '@angular/core';
-import { FieldDefinition } from '../form.types';
-import { SignalFormGroup } from '../services/signal-controls';
-import { isHidden } from '../services/rules';
+import { SignalFormGroup } from '../../../services/signal-controls';
+import { isHidden } from '../../../services/rules';
+import { FieldDefinition } from '../../../models/Field-definition.model';
+
 
 @Component({
   selector: 'app-dynamic-field',

@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { DynamicFormConfig } from './dynamic-form/form.types';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import { DynamicFormConfig } from './models/form-config.model';
 
 @Component({
   selector: 'app-root',

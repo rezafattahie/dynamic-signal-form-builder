@@ -7,10 +7,11 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { DynamicFormConfig } from './form.types';
-import { DynamicFieldComponent } from './components/dynamic-field.component';
-import { FormBuilderService } from './services/form-builder.service';
-import { SignalFormGroup } from './services/signal-controls';
+import { DynamicFormConfig } from '../../models/form-config.model';
+import { DynamicFieldComponent } from './dynamic-field/dynamic-field.component';
+import { SignalFormGroup } from '../../services/signal-controls';
+import { FormBuilderService } from '../../services/form-builder.service';
+
 
 @Component({
   selector: 'app-dynamic-form',

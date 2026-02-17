@@ -1,4 +1,4 @@
-import { HiddenWhenRule } from '../form.types';
+import { HiddenWhenRule } from "../models/hidden-rule.type";
 
 export function isHidden(rule: HiddenWhenRule | undefined, values: Record<string, unknown>): boolean {
   if (!rule) return false;
