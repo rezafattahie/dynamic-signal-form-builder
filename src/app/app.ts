@@ -2,80 +2,19 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { DynamicFormConfig } from './models/form-config.model';
+import { SubmittedFormResult } from './components/submitted-form-result/submitted-form-result';
+import { FormBuilder } from "./components/form-builder/form-builder";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, DynamicFormComponent],
+  imports: [CommonModule, DynamicFormComponent, SubmittedFormResult, FormBuilder],
   templateUrl: './app.html',
 })
 export class App {
   lastSubmitted = signal<Record<string, unknown> | null>(null);
 
-  formConfig: DynamicFormConfig = {
-    title: 'Dynamic Signal Form (Simple)',
-    description: 'Config-driven form using Angular Signals + TailwindCSS.',
-    fields: [
-      {
-        key: 'firstName',
-        type: 'text',
-        label: 'First Name',
-        placeholder: 'John',
-        validators: { required: true, minLength: 2 },
-      },
-      {
-        key: 'lastName',
-        type: 'text',
-        label: 'Last Name',
-        placeholder: 'Doe',
-        validators: { required: true },
-      },
-      {
-        key: 'email',
-        type: 'email',
-        label: 'Email',
-        placeholder: 'john@example.com',
-        validators: { required: true, email: true },
-      },
-      {
-        key: 'employed',
-        type: 'checkbox',
-        label: 'Employment',
-        placeholder: 'I am currently employed',
-        defaultValue: false,
-      },
-      {
-        key: 'company',
-        type: 'text',
-        label: 'Company Name',
-        placeholder: 'Your company',
-        validators: { required: true },
-        hiddenWhen: { key: 'employed', falsy: true },
-      },
-      {
-        key: 'role',
-        type: 'select',
-        label: 'Role',
-        options: [
-          { label: 'Developer', value: 'dev' },
-          { label: 'Designer', value: 'designer' },
-          { label: 'Manager', value: 'manager' },
-        ],
-        hiddenWhen: { key: 'employed', falsy: true },
-      },
-      {
-        key: 'notes',
-        type: 'textarea',
-        label: 'Notes',
-        placeholder: 'Anything else you want to share...',
-      },
-    ],
-    buttons: {
-      submitText: 'Submit',
-      resetText: 'Reset',
-      cancelText: 'Cancel',
-    },
-  };
+  formConfig?: DynamicFormConfig
 
   onSubmit(value: Record<string, unknown>) {
     this.lastSubmitted.set(value);
@@ -87,5 +26,9 @@ export class App {
 
   onReset() {
     this.lastSubmitted.set(null);
+  }
+
+  OnFormBuil(config: DynamicFormConfig | null) {
+    this.formConfig = config ?? undefined;
   }
 }

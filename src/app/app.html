@@ -3,19 +3,12 @@
     <div class="mb-10 text-center">
       <h1 class="text-3xl font-bold text-slate-800">Dynamic Signal Form Builder</h1>
     </div>
-
-    <app-dynamic-form
-      [config]="formConfig"
-      (submitted)="onSubmit($event)"
-      (cancelled)="onCancel()"
-      (reseted)="onReset()"
-    ></app-dynamic-form>
-
-    @if(lastSubmitted()) {
-      <div class="mx-auto mt-6 max-w-2xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h3 class="text-sm font-semibold text-slate-800">Last submitted value</h3>
-        <pre class="mt-2 overflow-auto rounded-xl bg-slate-900 p-4 text-xs text-slate-100">{{ lastSubmitted() | json }}</pre>
-      </div>
+    <app-form-builder (formConfig)="OnFormBuil($event)"></app-form-builder>
+    @if(formConfig) {
+    <app-dynamic-form [config]="formConfig" (submitted)="onSubmit($event)" (cancelled)="onCancel()"
+      (reseted)="onReset()"></app-dynamic-form>
     }
+    <app-submitted-form-result [lastSubmitted]="lastSubmitted()" (close)="onCancel()"></app-submitted-form-result>
+
   </div>
 </div>

@@ -1,0 +1,9 @@
+@if(lastSubmitted()) {
+<div (click)="close.emit()"
+  class="fixed top-0 left-0 right-0 w-screen h-screen bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center">
+  <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <h3 class="text-sm font-semibold text-slate-800">Last submitted value</h3>
+    <pre class="mt-2 overflow-auto rounded-xl bg-slate-900 p-4 text-xs text-slate-100">{{ lastSubmitted() | json }}</pre>
+  </div>
+</div>
+}
