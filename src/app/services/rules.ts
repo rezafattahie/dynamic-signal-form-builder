@@ -9,6 +9,10 @@ export function isHidden(rule: HiddenWhenRule | undefined, values: Record<string
     return other === rule.equals;
   }
 
+  if ('notEquals' in rule) {
+    return other !== rule.notEquals;
+  }
+
   if ('truthy' in rule) {
     return Boolean(other);
   }

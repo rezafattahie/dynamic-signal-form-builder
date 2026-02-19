@@ -1,0 +1,32 @@
+@if(fieldsList().length > 0) {
+<div class="flex items-start justify-start flex-wrap border border-slate-300 rounded-md p-4 mb-4 text-xs text-violet-900">
+    @for (field of fieldsToBuild(); track field.key; let idx = $index) {
+    <div class="relative border border-slate-200 bg-slate-50 rounded-md p-4 m-2 shadow-md pt-6">
+        <span
+            class="absolute -top-2 right-1/2 translate-x-1/2 px-3 border bg-emerald-500 rounded-full flex items-center justify-center text-xs text-white">
+            <pre>{{field.type}}</pre>
+        </span>
+
+        <pre><span class="text-violet-500">Label: </span>{{field.label}}</pre>
+        <pre><span class="text-violet-500">Key: </span>{{field.key}}</pre>
+        @if(field.options){
+        <pre><span class="text-violet-500">Options: </span></pre> @for (item of field.options; track item.value) {
+        {{item.label}},&nbsp;
+        }
+        }
+        @if (field.placeholder) {
+        <pre><span class="text-violet-500">Placeholder: </span>{{field.placeholder}}</pre>}
+        @if (field.validators) {
+        <pre><span class="text-violet-500">Validators: </span>{{ field.validators.required ? ' required' : '' }},&nbsp;{{ field.validators.email ? ' email' : '' }},&nbsp;{{ field.validators.minLength ? ' minLength(' + field.validators.minLength + ')' : '' }},&nbsp;</pre>
+        }
+
+        @if (field.hiddenWhen) {
+        <pre><span class="text-violet-500">Hidden when: </span>{{ field.hiddenWhen.key }}&nbsp;{{ 'equals' in field.hiddenWhen ? ' == ' + field.hiddenWhen.equals : '' }}&nbsp;{{ 'notEquals' in field.hiddenWhen ? ' != ' + field.hiddenWhen.notEquals : '' }}&nbsp;{{ 'truthy' in field.hiddenWhen ? ' (truthy)' : '' }}&nbsp;{{ 'falsy' in field.hiddenWhen ? ' (falsy)' : '' }}&nbsp;</pre>
+        }
+    </div>
+    }
+</div>
+} @else {
+<p class="text-center text-slate-500 italic">No fields added yet. Add a new field to the form
+    configuration.</p>
+}

@@ -14,7 +14,7 @@ import { FormBuilder } from "./components/form-builder/form-builder";
 export class App {
   lastSubmitted = signal<Record<string, unknown> | null>(null);
 
-  formConfig?: DynamicFormConfig
+  formConfig : DynamicFormConfig | null = null;
 
   onSubmit(value: Record<string, unknown>) {
     this.lastSubmitted.set(value);
@@ -28,7 +28,7 @@ export class App {
     this.lastSubmitted.set(null);
   }
 
-  OnFormBuil(config: DynamicFormConfig | null) {
-    this.formConfig = config ?? undefined;
+  OnFormBuild(config: DynamicFormConfig | null) {
+    this.formConfig = config 
   }
 }

@@ -20,12 +20,13 @@ import { FormBuilderService } from '../../services/form-builder.service';
   templateUrl: './dynamic-form.component.html',
 })
 export class DynamicFormComponent implements OnChanges {
-  @Input({ required: true }) config!: DynamicFormConfig;
+  @Input() config: DynamicFormConfig | null = null;
   @Input() initialValue: Record<string, unknown> | null = null;
 
   @Output() submitted = new EventEmitter<Record<string, unknown>>();
   @Output() cancelled = new EventEmitter<void>();
   @Output() reseted = new EventEmitter<void>();
+  @Output() close = new EventEmitter<void>();
 
   form: SignalFormGroup | null = null;
   defaults: Record<string, unknown> = {};

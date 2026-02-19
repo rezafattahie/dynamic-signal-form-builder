@@ -1,7 +1,19 @@
-<div class="mb-6 flex items-center justify-center">
+<div class="mb-6 flex items-center justify-center gap-4">
+    <button
+        class="bg-sky-300 px-6 py-1 rounded-md shadow-md hover:bg-sky-300/50 hover:shadow-none text-slate-600 hover:text-slate-600/80 cursor-pointer text-sm font-medium transition duration-200"
+        (click)="isAddingField.set(true)">
+        New form field
+    </button>
     <button
         class="bg-amber-300 px-6 py-1 rounded-md shadow-md hover:bg-amber-300/50 hover:shadow-none text-slate-600 hover:text-slate-600/80 cursor-pointer text-sm font-medium transition duration-200"
         (click)="startBuildingForm()">
-        {{!isBuilding() ? 'Rebuild Form' : 'Build Form'}}
+        Create form
     </button>
 </div>
+
+@if (isAddingField()) {
+<app-dynamic-form [config]="BuilderConfig" (submitted)="onAddField($event)"
+    (cancelled)="isAddingField.set(false)"></app-dynamic-form>
+}@else {
+<app-builder-fields [fieldsList]="fieldsList()"></app-builder-fields>
+}

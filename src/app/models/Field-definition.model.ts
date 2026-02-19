@@ -13,4 +13,7 @@ export interface FieldDefinition {
     defaultValue?: unknown;
     validators?: FieldValidators;
     hiddenWhen?: HiddenWhenRule;
+
+    // allow treating as a dictionary when replacing Record<string, unknown>
+    [key: string]: unknown;
 }

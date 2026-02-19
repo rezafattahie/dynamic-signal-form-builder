@@ -1,66 +1,66 @@
 @if (!hidden()) {
-  <div class="space-y-1">
-    <label class="block text-sm font-medium text-slate-800" [attr.for]="field.key">
-      {{ field.label }}
-    </label>
-
+<div class="pb-3">
+  <label class="block text-sm font-medium text-slate-800" [attr.for]="field.key">
+    @if(field.validators?.required) {
+    <span class="text-rose-600">*</span>
+    }
+    {{ field.label }}
     @if (field.helpText) {
-      <p class="text-xs text-slate-500">{{ field.helpText }}</p>
+    <span class="text-xs font-normal text-slate-500">&mdash; {{ field.helpText }}</span>
     }
 
-    @switch (field.type) {
-      @case ('text') {
-        <input
-          class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-400"
-          [attr.id]="field.key" [attr.placeholder]="field.placeholder || ''" [value]="control().value()"
-          (input)="onTextInput(($any($event.target).value))" (blur)="markTouched()" />
-      }
-      @case ('email') {
-        <input type="email"
-          class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-400"
-          [attr.id]="field.key" [attr.placeholder]="field.placeholder || ''" [value]="control().value()"
-          (input)="onTextInput(($any($event.target).value))" (blur)="markTouched()" />
-      }
-      @case ('textarea') {
-        <textarea
-          class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-400"
-          [attr.id]="field.key" [attr.placeholder]="field.placeholder || ''" rows="4"
-          (input)="onTextInput(($any($event.target).value))" (blur)="markTouched()">{{ control().value() }}</textarea>
-      }
-      @case ('select') {
-        <select
-          class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-400"
-          [attr.id]="field.key" [value]="control().value() " (change)="onTextInput(($any($event.target).value))"
-          (blur)="markTouched()">
-          <option value="">Select...</option>
-          @for (opt of field.options || []; track opt.value) {
-            <option [value]="opt.value">{{ opt.label }}</option>
-          }
-        </select>
-      }
-      @case ('checkbox') {
-        <div class="flex items-center gap-2">
-          <input type="checkbox" class="h-4 w-4 rounded border-slate-300" [attr.id]="field.key"
-            [checked]="control().value()" (change)="onCheckboxChange($any($event.target).checked)" (blur)="markTouched()" />
-          <span class="text-sm text-slate-700">{{ field.placeholder || '' }}</span>
-        </div>
-      }
-      @default {
-        <input
-          class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-400"
-          [attr.id]="field.key" [attr.placeholder]="field.placeholder || ''" [value]="control().value()"
-          (input)="onTextInput(($any($event.target).value))" (blur)="markTouched()" />
-      }
-    }
+  </label>
 
-    @if (control().touched()) {
-      <div class="space-y-1">
-        @for (kv of (control().errors() | keyvalue); track kv.key) {
-          <p class="text-xs text-red-600">
-            {{ kv.value }}
-          </p>
-        }
-      </div>
+
+  @switch (field.type) {
+  @case ('text') {
+  <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-400"
+    [attr.id]="field.key" [attr.placeholder]="field.placeholder || ''" [value]="control().value()"
+    (input)="onTextInput(($any($event.target).value))" (blur)="markTouched()" />
+  }
+  @case ('email') {
+  <input type="email"
+    class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-400"
+    [attr.id]="field.key" [attr.placeholder]="field.placeholder || ''" [value]="control().value()"
+    (input)="onTextInput(($any($event.target).value))" (blur)="markTouched()" />
+  }
+  @case ('textarea') {
+  <textarea class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-400"
+    [attr.id]="field.key" [attr.placeholder]="field.placeholder || ''" rows="4"
+    (input)="onTextInput(($any($event.target).value))" (blur)="markTouched()">{{ control().value() }}</textarea>
+  }
+  @case ('select') {
+  <select class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-400"
+    [attr.id]="field.key" [value]="control().value() " (change)="onTextInput(($any($event.target).value))"
+    (blur)="markTouched()">
+    <option value="">Select...</option>
+    @for (opt of field.options || []; track opt.value) {
+    <option [value]="opt.value">{{ opt.label }}</option>
+    }
+  </select>
+  }
+  @case ('checkbox') {
+  <div class="flex items-center gap-2">
+    <input type="checkbox" class="h-4 w-4 rounded border-slate-300" [attr.id]="field.key" [checked]="control().value()"
+      (change)="onCheckboxChange($any($event.target).checked)" (blur)="markTouched()" />
+    <span class="text-sm text-slate-700">{{ field.placeholder || '' }}</span>
+  </div>
+  }
+  @default {
+  <input class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-400"
+    [attr.id]="field.key" [attr.placeholder]="field.placeholder || ''" [value]="control().value()"
+    (input)="onTextInput(($any($event.target).value))" (blur)="markTouched()" />
+  }
+  }
+
+  @if (control().touched()) {
+  <div class="space-y-1">
+    @for (kv of (control().errors() | keyvalue); track kv.key) {
+    <p class="text-xs text-red-600">
+      {{ kv.value }}
+    </p>
     }
   </div>
+  }
+</div>
 }
